@@ -1,12 +1,12 @@
 import React from 'react'
+import { BrowserContainer } from '../containers/browse'
 import { useContent } from '../hooks'
+import selectionFilter from '../utils/selection-filter'
 
 export default function Browse() {
-  // we need the series and films
   const { series } = useContent('series')
   const { films } = useContent('films')
-  // we need slides
-  // pass iyt into browse container
+  const slides = selectionFilter({ series, films })
 
-  return <p>Hello from browse!</p>
+  return <BrowserContainer slides={slides} />
 }
