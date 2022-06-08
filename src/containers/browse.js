@@ -1,11 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { SelectProfileContainer } from './profiles'
 import { FirebaseContext } from '../context/firebase'
 import { Header, Loading } from '../components'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 
-export function BrowserContainer({ slides }) {
+export function BrowseContainer({ slides }) {
+  const [searchTerm, setSearchTerm] = useState('')
   const [profile, setProfile] = useState({})
   const [loading, setLoading] = useState(true)
   const { firebase } = useContext(FirebaseContext)
@@ -20,6 +21,7 @@ export function BrowserContainer({ slides }) {
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+
       <Header src="joker1" dontShowOnSmallViewPort>
         <Header.Frame>
           <Header.Group>
@@ -28,6 +30,10 @@ export function BrowserContainer({ slides }) {
             <Header.TextLink>Films</Header.TextLink>
           </Header.Group>
           <Header.Group>
+            <Header.Search
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
             <Header.Profile>
               <Header.Picture src={user.photoURL} />
               <Header.Dropdown>
@@ -36,7 +42,7 @@ export function BrowserContainer({ slides }) {
                   <Header.TextLink>{user.displayName}</Header.TextLink>
                 </Header.Group>
                 <Header.Group>
-                  <Header.TextLink onClick={() => firebase.auth().signOut}>
+                  <Header.TextLink onClick={() => firebase.auth().signOut()}>
                     Sign out
                   </Header.TextLink>
                 </Header.Group>
@@ -44,6 +50,7 @@ export function BrowserContainer({ slides }) {
             </Header.Profile>
           </Header.Group>
         </Header.Frame>
+
         <Header.Feature>
           <Header.FeatureCallOut>Watch Joker Now</Header.FeatureCallOut>
           <Header.Text>
@@ -53,6 +60,7 @@ export function BrowserContainer({ slides }) {
             he projects in a futile attempt to feel like he's part of the world
             around him.
           </Header.Text>
+          <Header.PlayButton>Play</Header.PlayButton>
         </Header.Feature>
       </Header>
     </>

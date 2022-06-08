@@ -44,7 +44,8 @@ export const Link = styled.p`
   cursor: pointer;
 
   &:hover {
-    font-weight: bold;
+    text-decoration: underline;
+    /* font-weight: bold; */
   }
 
   &:last-of-type {
@@ -57,61 +58,43 @@ export const Group = styled.div`
   align-items: center;
 `
 
+export const SearchInput = styled.input`
+  background-color: #44444459;
+  color: white;
+  border: 1px solid white;
+  transition: width 0.5s;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-left: ${({ active }) => (active === true ? '10px' : '0')};
+  padding: ${({ active }) => (active === true ? '0 10px' : '0')};
+  opacity: ${({ active }) => (active === true ? '1' : '0')};
+  width: ${({ active }) => (active === true ? '200px' : '0px')};
+`
+export const Search = styled.div`
+  display: flex;
+  align-items: center;
 
+  svg {
+    color: white;
+    cursor: pointer;
+  }
 
+  @media (max-width: 700px) {
+    display: none;
+  }
+`
 
+export const SearchIcon = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  img {
+    filter: brightness(0) invert(1);
+    width: 16px;
+  }
+`
 
 export const ButtonLink = styled(ReactRouterLink)`
   display: block;
@@ -136,8 +119,8 @@ export const Picture = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   border: 0;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
 `
 
@@ -232,5 +215,25 @@ export const Logo = styled.img`
   @media (min-width: 1449px) {
     height: 45px;
     width: 167px;
+  }
+`
+
+export const PlayButton = styled.button`
+  box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
+  background-color: #e6e6e6;
+  color: #000;
+  border-width: 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  max-width: 130px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    background-color: #ff1e1e;
+    color: white;
   }
 `
