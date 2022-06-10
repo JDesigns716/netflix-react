@@ -1,5 +1,13 @@
 import React, { useState, useContext, createContext } from 'react'
-import { Container, Title, Item, Inner, Header, Body } from './styles/accodion'
+import {
+  Container,
+  Frame,
+  Title,
+  Item,
+  Inner,
+  Header,
+  Body,
+} from './styles/accordion'
 
 const ToggleContext = createContext()
 
@@ -13,6 +21,10 @@ export default function Accordion({ children, ...restProps }) {
 
 Accordion.Title = function AccordionTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>
+}
+
+Accordion.Frame = function AccordionFrame({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>
 }
 
 Accordion.Item = function AccordionItem({ children, ...restProps }) {
@@ -30,7 +42,7 @@ Accordion.Header = function AccordionHeader({ children, ...restProps }) {
 
   return (
     <Header
-      onClick={() => setToggleShow(toggleShow => !toggleShow)}
+      onClick={() => setToggleShow(/*toggleShow => */ !toggleShow)}
       {...restProps}
     >
       {children}
@@ -46,5 +58,11 @@ Accordion.Header = function AccordionHeader({ children, ...restProps }) {
 Accordion.Body = function AccordionBody({ children, ...restProps }) {
   const { toggleShow } = useContext(ToggleContext)
 
-  return toggleShow ? <Body {...restProps}>{children}</Body> : null
+  // return toggleShow ? <Body {...restProps}>{children}</Body> : null
+
+  return (
+    <Body className={toggleShow ? 'open' : 'closed'} {...restProps}>
+      <span>{children}</span>
+    </Body>
+  )
 }

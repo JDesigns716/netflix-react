@@ -5,6 +5,10 @@ export const Container = styled.div`
   border-bottom: 8px solid #222;
 `
 
+export const Frame = styled.div`
+  margin-bottom: 40px;
+`
+
 export const Inner = styled.div`
   display: flex;
   padding: 70px 45px;
@@ -30,7 +34,7 @@ export const Item = styled.div`
   color: white;
   margin: auto;
   margin-bottom: 10px;
-  max-width: 700px;
+  max-width: 728px;
   width: 100%;
 
   &:first-of-type {
